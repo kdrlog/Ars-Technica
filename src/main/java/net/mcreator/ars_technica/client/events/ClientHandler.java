@@ -60,10 +60,6 @@ public class ClientHandler {
     public static void init(final FMLClientSetupEvent event) {
 
         AllPartialModels.init();
-        //PonderIndex.register();
-    }
-    @SubscribeEvent
-    public void setup(final FMLClientSetupEvent event) {
         PonderIndex.addPlugin(new ATPonderPlugin());
     }
 
