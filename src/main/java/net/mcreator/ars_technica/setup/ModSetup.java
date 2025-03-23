@@ -1,15 +1,15 @@
 package net.mcreator.ars_technica.setup;
 
+import net.mcreator.ars_technica.ArsTechnicaMod;
 import net.mcreator.ars_technica.client.events.ModParticles;
-import net.mcreator.ars_technica.ponder.PonderIndex;
 import net.minecraftforge.eventbus.api.IEventBus;
 
 public class ModSetup {
 
   public static void registers(IEventBus modEventBus) {
-    BlockRegistry.register(modEventBus);
+    BlockRegistry.registerEventListeners(modEventBus);
     GlyphsRegistry.registerGlyphs();
-    ItemsRegistry.register(modEventBus);
+    ItemsRegistry.registerEventListeners(modEventBus);
     CreativeTabRegistry.register(modEventBus);
     RecipeRegistry.register(modEventBus);
     EntityRegistry.register(modEventBus);

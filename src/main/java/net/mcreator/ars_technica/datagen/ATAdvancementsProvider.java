@@ -5,6 +5,7 @@ import com.hollingsworth.arsnouveau.ArsNouveau;
 import com.hollingsworth.arsnouveau.common.datagen.advancement.ANAdvancementBuilder;
 import com.hollingsworth.arsnouveau.common.datagen.advancement.ANAdvancements;
 import net.mcreator.ars_technica.ArsTechnicaMod;
+import net.mcreator.ars_technica.setup.BlockRegistry;
 import net.mcreator.ars_technica.setup.ItemsRegistry;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRewards;

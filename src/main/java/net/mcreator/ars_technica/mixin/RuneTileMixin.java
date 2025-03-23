@@ -1,8 +1,8 @@
 package net.mcreator.ars_technica.mixin;
 
 import com.hollingsworth.arsnouveau.common.block.tile.RuneTile;
-import com.simibubi.create.content.equipment.goggles.IHaveGoggleInformation;
-import com.simibubi.create.foundation.utility.Lang;
+import com.simibubi.create.api.equipment.goggles.IHaveGoggleInformation;
+import com.simibubi.create.foundation.utility.CreateLang;
 import net.mcreator.ars_technica.ArsTechnicaMod;
 import net.mcreator.ars_technica.common.helpers.CooldownHelper;
 import net.minecraft.nbt.CompoundTag;
@@ -47,9 +47,9 @@ public class RuneTileMixin implements IRuneTileModifier, IHaveGoggleInformation 
 
     @Override
     public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {
-        Lang.text("Cooldown: ").forGoggles(tooltip);
+        CreateLang.text("Cooldown: ").forGoggles(tooltip);
         int ticksUntilCharge = ticksUntilChargeCount == -1 ? 20 * 2 : ticksUntilChargeCount;
-        Lang.text(CooldownHelper.getCooldownText(ticksUntilCharge)).forGoggles(tooltip);
+        CreateLang.text(CooldownHelper.getCooldownText(ticksUntilCharge)).forGoggles(tooltip);
         return true;
     }
 

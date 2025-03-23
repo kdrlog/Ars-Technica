@@ -23,3 +23,4 @@ public class ItemProviderEntryMixin<T extends ItemLike> {
         }
     }
 }
+

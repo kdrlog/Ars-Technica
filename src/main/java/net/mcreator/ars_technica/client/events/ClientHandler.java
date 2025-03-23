@@ -6,6 +6,7 @@ import com.hollingsworth.arsnouveau.api.util.PerkUtil;
 
 import com.simibubi.create.content.kinetics.fan.processing.AllFanProcessingTypes;
 import com.simibubi.create.content.kinetics.fan.processing.FanProcessingType;
+import net.createmod.ponder.foundation.PonderIndex;
 import net.mcreator.ars_technica.ArsTechnicaMod;
 
 import net.mcreator.ars_technica.client.AllPartialModels;
@@ -14,7 +15,7 @@ import net.mcreator.ars_technica.client.renderer.tile.EncasedBasicTurretRenderer
 import net.mcreator.ars_technica.common.blocks.PreciseRelayRenderer;
 import net.mcreator.ars_technica.common.blocks.SourceEngineRenderer;
 import net.mcreator.ars_technica.common.items.equipment.SpyMonocleCurioRenderer;
-import net.mcreator.ars_technica.ponder.PonderIndex;
+import net.mcreator.ars_technica.ponder.ATPonderPlugin;
 import net.mcreator.ars_technica.setup.EntityRegistry;
 import net.minecraft.client.Minecraft;
 
@@ -59,7 +60,11 @@ public class ClientHandler {
     public static void init(final FMLClientSetupEvent event) {
 
         AllPartialModels.init();
-        PonderIndex.register();
+        //PonderIndex.register();
+    }
+    @SubscribeEvent
+    public void setup(final FMLClientSetupEvent event) {
+        PonderIndex.addPlugin(new ATPonderPlugin());
     }
 
     @SubscribeEvent
@@ -67,8 +72,8 @@ public class ClientHandler {
         event.registerLayerDefinition(SpyMonocleCurioRenderer.SPY_MONOCLE_LAYER, () -> SpyMonocleCurioRenderer.createBodyLayer());
     }
 
-    private static float DEFAULT_PITCH = 0.8f;
-    private static float SPEED_PITCH_MULTIPLIER = 4;
+    private static final float DEFAULT_PITCH = 0.8f;
+    private static final float SPEED_PITCH_MULTIPLIER = 4;
 
     public static void handleWhirlSound(WhirlEntity entity, FanProcessingType processor, float speed) {
         SoundEvent event = getLoopingSoundFromType(processor);

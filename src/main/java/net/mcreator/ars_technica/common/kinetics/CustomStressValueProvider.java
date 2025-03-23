@@ -1,44 +1,43 @@
 package net.mcreator.ars_technica.common.kinetics;
 
-import com.simibubi.create.content.kinetics.BlockStressValues;
-import com.simibubi.create.foundation.utility.Couple;
+import com.simibubi.create.api.stress.BlockStressValues;
 import net.minecraft.world.level.block.Block;
 
-import javax.annotation.Nullable;
+public class CustomStressValueProvider {
 
-public class CustomStressValueProvider implements BlockStressValues.IStressValueProvider {
+    /**
+     * Registers stress capacity and generated RPM for a block.
+     *
+     * @param block         The block to register the stress values for.
+     * @param capacity      The stress capacity of the block.
+     * @param generatedRPM  The generated RPM for the block.
+     */
+    public static void register(Block block, double capacity, int generatedRPM) {
+        // Register the stress capacity of the block
+        BlockStressValues.CAPACITIES.register(block, () -> capacity);
 
-    private final double capacity;
-    private final Couple<Integer> generatedRPM;
-
-    public CustomStressValueProvider(double capacity, Couple<Integer> generatedRPM) {
-        this.capacity = capacity;
-        this.generatedRPM = generatedRPM;
+        // Register the generated RPM; used for tooltips and informational purposes
+        BlockStressValues.RPM.register(block, new BlockStressValues.GeneratedRpm(generatedRPM, false));
     }
 
-    @Override
-    public double getImpact(Block block) {
-        return 0;
+    /**
+     * Registers only the stress capacity for a block.
+     *
+     * @param block    The block to register the stress capacity for.
+     * @param capacity The stress capacity of the block.
+     */
+    public static void registerCapacity(Block block, double capacity) {
+        BlockStressValues.CAPACITIES.register(block, () -> capacity);
     }
 
-    @Override
-    public double getCapacity(Block block) {
-        return capacity;
-    }
-
-    @Override
-    public boolean hasImpact(Block block) {
-        return false;
-    }
-
-    @Override
-    public boolean hasCapacity(Block block) {
-        return true;
-    }
-
-    @Nullable
-    @Override
-    public Couple<Integer> getGeneratedRPM(Block block) {
-        return generatedRPM;
+    /**
+     * Registers only the generated RPM for a block.
+     *
+     * @param block         The block to register the RPM for.
+     * @param generatedRPM  The generated RPM for the block.
+     * @param mayGenerateLess If true, the block may generate less RPM under certain conditions.
+     */
+    public static void registerRPM(Block block, int generatedRPM, boolean mayGenerateLess) {
+        BlockStressValues.RPM.register(block, new BlockStressValues.GeneratedRpm(generatedRPM, mayGenerateLess));
     }
 }

@@ -23,6 +23,7 @@ apply plugin: 'idea'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'org.spongepowered.mixin'
 
+
 version = "${mc_version}-${mod_version}"
 group = 'net.mcreator.ars_technica'
 
@@ -78,8 +79,8 @@ minecraft {
             workingDirectory project.file('run')
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+            property("mixin.env.remapRefMap", "true")
+            property("mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg")
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
             args '--mod', 'ars_technica', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
@@ -108,14 +109,15 @@ repositories {
     }
 
     maven {
-        // Mixed mappings, Registrate, Flywheel
-        name 'tterrag maven'
-        url 'https://maven.tterrag.com'
+        url = "https://maven.createmod.net"
     }
 
     maven {
         url "https://maven.tterrag.com/"
     }
+    maven {
+        url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
+    } // ForgeConfigAPIPort
 
     maven {
         url = "https://maven.theillusivec4.top/"
@@ -150,9 +152,11 @@ dependencies {
     implementation fg.deobf("curse.maven:starbunclemania-746215:5908851")
 
     // Create and related
-    implementation fg.deobf("com.simibubi.create:create-${mc_version}:${create_version}:slim"){transitive = false}
-    implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-${flywheel_minecraft_version}:${flywheel_version}")
-    implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
+    implementation(fg.deobf("com.simibubi.create:create-${mc_version}:${create_version}:slim") { transitive = false })
+    implementation(fg.deobf("net.createmod.ponder:Ponder-Forge-${mc_version}:${ponder_version}"))
+    compileOnly(fg.deobf("dev.engine-room.flywheel:flywheel-forge-api-${mc_version}:${flywheel_version}"))
+    runtimeOnly(fg.deobf("dev.engine-room.flywheel:flywheel-forge-${mc_version}:${flywheel_version}"))
+    implementation(fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}"))
 
     // JEI, at runtime use full JEI
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")
@@ -162,8 +166,8 @@ dependencies {
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    implementation(annotationProcessor("com.github.llamalad7.mixinextras:mixinextras-common:0.2.0-beta.8"))
-    implementation("com.github.llamalad7.mixinextras:mixinextras-forge:0.2.0-beta.8")
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
+    implementation("io.github.llamalad7:mixinextras-forge:0.4.1")
 }
 
 tasks.withType(JavaCompile).configureEach {
@@ -205,6 +209,14 @@ if (System.getProperty("idea.sync.active") == "true") {
     afterEvaluate {
         tasks.withType(JavaCompile).all {
             it.options.annotationProcessorPath = files()
+        }
+    }
+}
+minecraft {
+    runs {
+        client {
+            property("mixin.env.remapRefMap", "true")
+            property("mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg")
         }
     }
 }

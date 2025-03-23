@@ -6,6 +6,8 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Ars-Technica.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Ars-Technica.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ars_technica.main.iml" filepath="$PROJECT_DIR$/.idea/modules/ars_technica.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ars_technica.test.iml" filepath="$PROJECT_DIR$/.idea/modules/ars_technica.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/net.mcreator.ars_technica.Ars-Technica.main.iml" filepath="$PROJECT_DIR$/.idea/modules/net.mcreator.ars_technica.Ars-Technica.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/net.mcreator.ars_technica.Ars-Technica.test.iml" filepath="$PROJECT_DIR$/.idea/modules/net.mcreator.ars_technica.Ars-Technica.test.iml" />
     </modules>
   </component>
 </project>

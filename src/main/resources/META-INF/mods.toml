@@ -36,11 +36,11 @@ authors="Mathias Norregaard"
     side = "BOTH"
 
 [[dependencies.ars_technica]]
-    modId = "create"
+    modId="create"
     mandatory = true
-    versionRange = "[0.5,)"
-    ordering = "AFTER"
-    side = "BOTH"
+    versionRange="[6.0.3,6.1.0)"
+    ordering="NONE"
+    side="BOTH"
 
 [[dependencies.ars_technica]]
     modId="starbunclemania"

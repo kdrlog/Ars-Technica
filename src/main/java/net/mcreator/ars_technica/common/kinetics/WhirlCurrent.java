@@ -76,8 +76,8 @@ public class WhirlCurrent {
 
             entity.hurtMarked = true;
 
-            if (processingType == AllFanProcessingTypes.NONE)
-                continue;
+            //if (processingType == AllFanProcessingTypes.NONE)
+            //    continue;
 
             if (entity instanceof ItemEntity itemEntity) {
                 if (WhirlProcessing.canProcess(itemEntity, processingType)) {
@@ -136,9 +136,9 @@ public class WhirlCurrent {
     }
 
     private void sendWhirlParticles(List<ServerPlayer> players, FanProcessingType processingType) {
-        if (processingType == AllFanProcessingTypes.NONE) {
-            return;
-        }
+        //if (processingType == AllFanProcessingTypes.NONE) {
+        //    return;
+        //}
         ParticleColor color = ParticleColor.WHITE;
         if(processingType == AllFanProcessingTypes.BLASTING || processingType == AllFanProcessingTypes.HAUNTING || processingType == AllFanProcessingTypes.SMOKING) {
             color = new ParticleColor(32, 32, 32);
