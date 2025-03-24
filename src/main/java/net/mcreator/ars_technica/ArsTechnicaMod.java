@@ -2,8 +2,6 @@ package net.mcreator.ars_technica;
 
 
 import com.simibubi.create.api.stress.BlockStressValues;
-import com.simibubi.create.foundation.data.CreateRegistrate;
-import net.createmod.catnip.data.Couple;
 import net.mcreator.ars_technica.client.AllPartialModels;
 import net.mcreator.ars_technica.common.items.equipment.SpyMonocleCurioRenderer;
 import net.mcreator.ars_technica.recipe.ConfigRecipeCondition;
@@ -50,7 +48,6 @@ import java.util.AbstractMap;
 
 @Mod("ars_technica")
 public class ArsTechnicaMod {
-	public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(ArsTechnicaMod.MODID);
 	public static final Logger LOGGER = LogManager.getLogger(ArsTechnicaMod.class);
 	public static final String MODID = "ars_technica";
 
@@ -91,7 +88,6 @@ public class ArsTechnicaMod {
 		BlockStressValues.setGeneratorSpeed(256).accept(sourceEngineBlock);
 	}
 
-
 	public void clientSetup(final FMLClientSetupEvent event) {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientHandler::init);
 	}
@@ -129,3 +125,4 @@ public class ArsTechnicaMod {
 		return new ResourceLocation(MODID, name);
 	}
 }
+

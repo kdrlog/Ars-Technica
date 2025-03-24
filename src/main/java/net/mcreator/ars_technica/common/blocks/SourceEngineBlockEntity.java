@@ -22,6 +22,7 @@ import net.mcreator.ars_technica.setup.EntityRegistry;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Direction.Axis;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
@@ -222,7 +223,7 @@ public class SourceEngineBlockEntity extends GeneratingKineticBlockEntity {
         return convertToDirection(generatedSpeed.value, getBlockState().getValue(SourceEngineBlock.FACING));
     }
 
-    static class MotorValueBox extends ValueBoxTransform.Sided {
+    class MotorValueBox extends ValueBoxTransform.Sided {
 
         @Override
         protected Vec3 getSouthLocation() {
@@ -231,7 +232,7 @@ public class SourceEngineBlockEntity extends GeneratingKineticBlockEntity {
 
         @Override
         public Vec3 getLocalOffset(LevelAccessor level, BlockPos pos, BlockState state) {
-            Direction facing = state.getValue(SourceEngineBlock.FACING);
+            Direction facing = state.getValue(CreativeMotorBlock.FACING);
             return super.getLocalOffset(level, pos, state).add(Vec3.atLowerCornerOf(facing.getNormal())
                     .scale(-1 / 16f));
         }
@@ -239,22 +240,23 @@ public class SourceEngineBlockEntity extends GeneratingKineticBlockEntity {
         @Override
         public void rotate(LevelAccessor level, BlockPos pos, BlockState state, PoseStack ms) {
             super.rotate(level, pos, state, ms);
-            Direction facing = state.getValue(SourceEngineBlock.FACING);
-            if (facing.getAxis() == Direction.Axis.Y)
+            Direction facing = state.getValue(CreativeMotorBlock.FACING);
+            if (facing.getAxis() == Axis.Y)
                 return;
             if (getSide() != Direction.UP)
                 return;
             TransformStack.of(ms)
-                    .rotateZ(-AngleHelper.horizontalAngle(facing) + 180);
+                    .rotateZDegrees(-AngleHelper.horizontalAngle(facing) + 180);
         }
 
         @Override
         protected boolean isSideActive(BlockState state, Direction direction) {
-            Direction facing = state.getValue(SourceEngineBlock.FACING);
-            if (facing.getAxis() != Direction.Axis.Y && direction == Direction.DOWN)
+            Direction facing = state.getValue(CreativeMotorBlock.FACING);
+            if (facing.getAxis() != Axis.Y && direction == Direction.DOWN)
                 return false;
             return direction.getAxis() != facing.getAxis();
         }
+
     }
 
 }

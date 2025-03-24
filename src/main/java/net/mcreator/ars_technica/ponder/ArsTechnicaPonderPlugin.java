@@ -5,10 +5,9 @@ import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
 import net.createmod.ponder.api.registration.PonderTagRegistrationHelper;
 import net.mcreator.ars_technica.ArsTechnicaMod;
 import net.minecraft.resources.ResourceLocation;
-import net.mcreator.ars_technica.ponder.ATPonderScenes;
 
 
-public class ATPonderPlugin implements PonderPlugin {
+public class ArsTechnicaPonderPlugin implements PonderPlugin {
     @Override
     public String getModId() {
         return ArsTechnicaMod.MODID;
@@ -16,11 +15,11 @@ public class ATPonderPlugin implements PonderPlugin {
 
     @Override
     public void registerScenes(PonderSceneRegistrationHelper<ResourceLocation> helper) {
-        ATPonderScenes.registerScenes(helper);
+        ArsTechnicaPonderScenes.registerScenes(helper);
     }
 
     @Override
     public void registerTags(PonderTagRegistrationHelper<ResourceLocation> helper) {
-        ATPonderScenes.registerTags(helper);
+        ArsTechnicaPonderScenes.registerTags(helper);
     }
 }

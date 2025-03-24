@@ -7,9 +7,9 @@ import net.minecraftforge.eventbus.api.IEventBus;
 public class ModSetup {
 
   public static void registers(IEventBus modEventBus) {
-    BlockRegistry.registerEventListeners(modEventBus);
+    BlockRegistry.register(modEventBus);
     GlyphsRegistry.registerGlyphs();
-    ItemsRegistry.registerEventListeners(modEventBus);
+    ItemsRegistry.register(modEventBus);
     CreativeTabRegistry.register(modEventBus);
     RecipeRegistry.register(modEventBus);
     EntityRegistry.register(modEventBus);
